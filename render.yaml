@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: resumekaar-backend
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://admin:Karthikeya%409217@cluster0.utdmesx.mongodb.net/?appName=Cluster0
+      - key: JWT_SECRET
+        value: hexa
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+
+  - type: static
+    name: resumekaar-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://resumekaar-backend.onrender.com
+    autoDeploy: true

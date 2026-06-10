@@ -11,7 +11,8 @@ const ResumeBuilder = () => {
     const fetchResume = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/resumes/${id}`, {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+        const res = await axios.get(`${apiUrl}/api/resume/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
