@@ -16,14 +16,14 @@ services:
         value: production
     autoDeploy: true
 
-  - type: static
+  - type: web
     name: resumekaar-frontend
-    runtime: static
+    runtime: node
     region: oregon
     plan: free
     rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
+    buildCommand: npm install && npm run build && npm install -g serve
+    startCommand: serve -s dist -l 3000
     envVars:
       - key: VITE_API_URL
         value: https://resumekaar-backend.onrender.com
