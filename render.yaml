@@ -15,16 +15,3 @@ services:
       - key: NODE_ENV
         value: production
     autoDeploy: true
-
-  - type: web
-    name: resumekaar-frontend
-    runtime: node
-    region: oregon
-    plan: free
-    rootDir: frontend
-    buildCommand: npm install && npm run build && npm install -g serve
-    startCommand: serve -s dist -l 3000
-    envVars:
-      - key: VITE_API_URL
-        value: https://resumekaar-backend.onrender.com
-    autoDeploy: true
